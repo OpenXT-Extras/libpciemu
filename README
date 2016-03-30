@@ -1,3 +1,26 @@
+### Current status
+DEFUNCT
+
+### Dependencies
+libevent
+xenctrl (libxc)
+ioreq (Xen component)
+
+### Usage
+Previously linked with Surfman to surface a virtual PCI device in the guest,
+with some help for IOEMU.
+
+### Feature
+Exports an interface to trigger callbacks on read & write PIO and MMIO for the
+exposed device (including config. space). It does not support access to ROM,
+capability list handling and D-state power management.
+
+This library will allocate an event channel and register to the ioreq server
+through the xenctrl interface (xc_hvm_register_ioreq_server()).
+
+A copy of Linux config. space macro offsets is shipped with the library to help
+deal with config. space access.
+
 ********** Library PCI Emulation Documentation **************
 
 This library contains helpers to simply create a virtual PCI device.
@@ -23,3 +46,4 @@ In order to understand how to use libpciemu, a skeleton was created in app/.
 /!\ This app compile buts doesn't work. it miss synchronisation with the manager.
 
 42sh> make -C app
+
